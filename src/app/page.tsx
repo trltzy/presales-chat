@@ -26,6 +26,13 @@ export default function ChatPage() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  useEffect(() => {
+    const el = textareaRef.current;
+    if (!el) return;
+    el.style.height = "auto";
+    el.style.height = el.scrollHeight + "px";
+  }, [input]);
+
   async function send(text?: string) {
     const content = (text ?? input).trim();
     if (!content || loading) return;
